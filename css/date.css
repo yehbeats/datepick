@@ -1,0 +1,180 @@
+/*重置基本样式*/
+* { margin: 0; padding: 0; }
+body { font: 14px/18px "Microsoft Yahei", Tahoma, Helvetica, Arial, Verdana, "\5b8b\4f53", sans-serif;}
+table {  border: none;  }
+
+/*input框样式*/
+.data-pick-input {
+    display: inline-block;
+    width: 225px;
+    line-height: 30px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-left: 20px;
+    background: url("../img/Date_24.png") no-repeat right center;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+/*日历样式*/
+.calender {
+    position: absolute;
+    border: 1px solid #DAD3CB;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: #FBF6F3;
+}
+
+.calender .header {
+    border-radius: 3px;
+    padding: 7px;
+    background-color: #CA842E;
+    text-align: center;
+}
+
+.calender .header .circle {
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: #FFCC00;
+    cursor: pointer;
+    position: relative;
+}
+
+.calender .header .circle .triangle-left {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-right-color: #FFF;
+}
+
+.calender .header .circle .triangle-right {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border: 5px solid transparent;
+    border-left-color: #FFF;
+}
+
+.calender .header .circle .triangle-left.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-90%, -50%);
+}
+
+.calender .header .circle .triangle-right.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-20%, -50%);
+}
+
+.calender .header .date-pick {
+    display: inline-block;
+}
+
+.calender .header .date-pick .year-pick {
+    margin-left: 20px;
+}
+
+.calender table td {
+    border: 1px solid #D3D3D3;
+    border-radius: 1px;
+    transition: all .2s linear;
+}
+
+.calender table td.now-month {
+    cursor: pointer;
+}
+
+.calender table td.pre-month, table td.next-month {
+    cursor: default;
+}
+
+.calender table a {
+    display: block;
+    padding: .1em .4em;
+    text-align: right;
+    text-decoration: none;
+}
+
+.calender .week {
+    color: #CC6666 !important;
+}
+
+.calender .now-month .state-default {
+    color: #555555;
+    background-color: #F0E8DB;
+}
+
+.calender .now-month .state-active {
+    background-color: #FFFFC0;
+}
+
+.calender .now-month .state-choose {
+    background-color: #FFF;
+}
+
+.calender .pre-month .state-default, .next-month .state-default {
+    color: #999;
+    background-color: #F7F5F3;
+}
+
+.calender table td.now-month:hover {
+    border-color: #555;
+}
+
+.calender table td.now-month:hover .state-default {
+    color: #222;
+}
+
+/*footer*/
+
+.calender .footer {
+    color: #CA842E;
+    margin-top: 3px;
+    font-size: 10px;
+}
+
+.calender .footer .date-time {
+    display: inline-block;
+}
+
+.calender .footer .date-time span, .calender .footer .date-opr a {
+    display: inline-block;
+    line-height: 25px;
+    padding: 0 10px;
+    border: 1px solid #D3D3D3;
+}
+
+.calender .footer .time-label {
+
+    border-right: none;
+    margin-left: 2px;
+}
+.calender .footer .time-dis {
+    margin-left: -5px;
+}
+
+.calender .footer .date-opr {
+    display: inline-block;
+    float: right;
+}
+
+.calender .footer .date-opr .date-today {
+    margin-right: -5px;
+}
+
+.calender .footer .date-opr .date-clear{
+    margin-right: 2px;
+}
