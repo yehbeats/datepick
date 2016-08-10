@@ -2,115 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>日期插件</title>
+    <title>Test</title>
     <link rel="stylesheet" href="css/date.css">
 </head>
 <body>
-
-    <input type="text" class="data-pick-input">
-
-    <div id="calendar" class="calender" style="top: 40px; left: 20px;">
-        <div class="header">
-            <a class="circle fl">
-                <span class="triangle-left center"></span>
-            </a>
-            <a class="circle fr">
-                <span class="triangle-right center"></span>
-            </a>
-            <div class="date-pick">
-                <select class="month-pick" id="pickMonth">
-                    <option value="0">1月</option>
-                    <option value="1">2月</option>
-                    <option value="2">3月</option>
-                    <option value="3">4月</option>
-                    <option value="4">5月</option>
-                    <option value="5" selected="selected">6月</option>
-                    <option value="6">7月</option>
-                    <option value="7">8月</option>
-                    <option value="8">9月</option>
-                    <option value="9">10月</option>
-                    <option value="10">11月</option>
-                    <option value="11">12月</option>
-                </select>
-                <select class="year-pick" id="pickYear">
-                    <option value="2015">2015</option>
-                    <option value="2016" selected="selected">2016</option>
-                    <option value="2017">2017</option>
-                </select>
-            </div> <!--end date-pick-->
-        </div> <!--end header-->
-
-        <table class="calendar-dis">
-            <thead>
-                <tr>
-                    <th>一</th>
-                    <th>二</th>
-                    <th>三</th>
-                    <th>四</th>
-                    <th>五</th>
-                    <th>六</th>
-                    <th>日</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="pre-month"><a class="state-default">30</a></td>
-                    <td class="pre-month"><a class="state-default">31</a></td>
-                    <td class="now-month"><a class="state-default">1</a></td>
-                    <td class="now-month"><a class="state-default">2</a></td>
-                    <td class="now-month"><a class="state-default">3</a></td>
-                    <td class="now-month"><a class="state-default week">4</a></td>
-                    <td class="now-month"><a class="state-default week">5</a></td>
-                </tr>
-                <tr>
-                    <td class="now-month"><a class="state-active">6</a></td>
-                    <td class="now-month"><a class="state-default">7</a></td>
-                    <td class="now-month"><a class="state-default">8</a></td>
-                    <td class="now-month"><a class="state-default">9</a></td>
-                    <td class="now-month"><a class="state-choose">10</a></td>
-                    <td class="now-month"><a class="state-default week">11</a></td>
-                    <td class="now-month"><a class="state-default week">12</a></td>
-                </tr>
-                <tr>
-                    <td class="now-month"><a class="state-default">13</a></td>
-                    <td class="now-month"><a class="state-default">14</a></td>
-                    <td class="now-month"><a class="state-default">15</a></td>
-                    <td class="now-month"><a class="state-default">16</a></td>
-                    <td class="now-month"><a class="state-default">17</a></td>
-                    <td class="now-month"><a class="state-default week">18</a></td>
-                    <td class="now-month"><a class="state-default week">19</a></td>
-                </tr>
-                <tr>
-                    <td class="now-month"><a class="state-default">20</a></td>
-                    <td class="now-month"><a class="state-default">21</a></td>
-                    <td class="now-month"><a class="state-default">22</a></td>
-                    <td class="now-month"><a class="state-default">23</a></td>
-                    <td class="now-month"><a class="state-default">24</a></td>
-                    <td class="now-month"><a class="state-default week">25</a></td>
-                    <td class="now-month"><a class="state-default week">26</a></td>
-                </tr>
-                <tr>
-                    <td class="now-month"><a class="state-default">27</a></td>
-                    <td class="now-month"><a class="state-default">28</a></td>
-                    <td class="now-month"><a class="state-default">29</a></td>
-                    <td class="now-month"><a class="state-default">30</a></td>
-                    <td class="next-month"><a class="state-default">1</a></td>
-                    <td class="next-month"><a class="state-default week">2</a></td>
-                    <td class="next-month"><a class="state-default week">3</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="footer">
-            <div class="date-time">
-                <span class="time-label">时间</span>
-                <span class="time-dis">17 : 53 : 00</span>
-            </div>
-            <div class="date-opr">
-                <a class="date-today">今天</a>
-                <a class="date-clear">清空</a>
-            </div>
-        </div>
-    </div>
-<script src="js/date.js"></script>
+<input type="text" id="in" class="data-pick-input" readonly style="position: absolute; top: 200px; left: 400px;">
+<script src="js/datapick.js"></script>
+<script>
+    var input = document.getElementById('in');
+    var a = new Calendar();
+</script>
 </body>
 </html>
