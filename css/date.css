@@ -11,7 +11,7 @@ table {  border: none;  }
     border: 1px solid #ccc;
     border-radius: 3px;
     margin-left: 20px;
-    background: url("../img/Date_24.png") no-repeat right center;
+    background: url("../img/icon_calendar.png") no-repeat right center;
 }
 
 .fl {
@@ -135,6 +135,7 @@ table td.now-month:hover {
 
 table td.now-month:hover .state-default {
     color: #222;
+    background-color: #FFCC99;
 }
 
 .calendar .footer {
@@ -160,7 +161,7 @@ table td.now-month:hover .state-default {
     margin-left: 2px;
 }
 .calendar .footer .time-dis {
-    margin-left: -5px;
+    margin-left: -1px;
 }
 
 .calendar .footer .date-opr {
@@ -169,9 +170,16 @@ table td.now-month:hover .state-default {
 }
 
 .calendar .footer .date-opr .date-today {
-    margin-right: -5px;
+    margin-right: -1px;
+    cursor: pointer;
+    transition: all .2s linear;
+}
+
+.calendar .footer .date-opr .date-today:hover {
+    background-color: #FFFFC0;
 }
 
 .calendar .footer .date-opr .date-clear{
     margin-right: 2px;
+    cursor: pointer;
 }
