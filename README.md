@@ -1,4 +1,4 @@
-# datapick
+# datepick
 JavaScript原生日期选择插件
 
 ##Example
@@ -22,7 +22,7 @@ JavaScript原生日期选择插件
 
 默认的配置如下：
 
-```
+```javascript
 var defaultConf = {
     targetInput : '',
     beginYear: 1901,
