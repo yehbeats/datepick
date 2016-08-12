@@ -10,9 +10,8 @@
 * type：日期显示格式
 * firDayOfWeek：一周以周几开始显示 {1:'周一', 2:'周二', 3:'周三', 4:'周四', 5:'周五', 6:'周六', 0:'周日'}
 * */
-var input = document.getElementById('in');
 var defaultConf = {
-    targetInput : input,
+    targetInput : '',
     beginYear: 1901,
     endYear: 2099,
     type: 'yyyy-mm-dd',
@@ -26,19 +25,10 @@ var defaultConf = {
         today: '今天',
         clear: '清除'
     }
-    /*language: {
-        year: 'Y',
-        month: 'M',
-        monthList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-        weekList:[ 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'St'],
-        time: 'TIME',
-        today: 'TOD',
-        clear: 'CLR'
-    }*/
 };
 
 function Calendar(options) {
-    this.options = defaultConf;
+    this.options = this.extend(defaultConf, options);
     this.targetInput = this.options.targetInput;
     this.date = new Date();   //this.date存储用户所选的值，若没有，则默认今天
     this.now = new Date();
@@ -48,14 +38,17 @@ function Calendar(options) {
 }
 
 Calendar.prototype = {
-    //渲染面板
+    /**
+     * @description 日期面板初始化
+     */
     init: function () {
         this.renderPanel();
         this.hide();
     },
 
-    /*初始化整个面板
-    * 包括在渲染table时所需的值都在初始化面板时求出，这样可以增加table的渲染效率*/
+    /**
+     * @description 构造整个日期面板
+     */
     renderPanel: function () {
         var options = this.options;
         var self = this;
@@ -90,7 +83,7 @@ Calendar.prototype = {
             monthHtml += '<option value="'+i+'">'+item+'</option>';
         });
 
-        for(var i = options.beginYear; i < options.endYear; i++) {
+        for(var i = options.beginYear; i <= options.endYear; i++) {
             yearHtml += '<option value="'+i+'">'+i+'</option>';
         }
 
@@ -116,7 +109,7 @@ Calendar.prototype = {
         //创建footer
         var footer = document.createElement('div');
         footer.className = 'footer';
-        footer.innerHTML = '<div class="date-time"><span class="time-label">'+options.language.time+'</span><span class="time-dis">xxxx : xx : xx</span> </div> ' +
+        footer.innerHTML = '<div class="date-time"><span class="time-label">'+options.language.time+'</span><span class="time-dis">00 : 00 : 00</span> </div> ' +
             '<div class="date-opr"><a class="date-today">'+options.language.today+'</a><a class="date-clear">'+options.language.clear+'</a> </div>';
 
         //组装各个元素
@@ -128,6 +121,9 @@ Calendar.prototype = {
         document.body.appendChild(calendarPane);
 
         this.doms.calendarPane = calendarPane;
+
+        //渲染时间
+        setInterval(this.renderTime.bind(this), 1000);
 
         //渲染table所需的各种值
         this.saturday = saturday;
@@ -149,11 +145,13 @@ Calendar.prototype = {
         this.renderTable(MONTH, YEAR);
     },
 
-    //渲染table  比如 2016/8
+    /**
+     * @description 根据月份和年份渲染面板的主要结构日期显示部分
+     * @param {Number} month
+     * @param {Number} year
+     */
     renderTable: function (month, year) {
         console.log(year + " : " + month);
-
-
         if(month < 1) {
             year --;
             month = 12;
@@ -170,8 +168,7 @@ Calendar.prototype = {
             currentDays = this.getDaysOfMonth(year, currentMonth),
             preMonth = currentMonth - 1,
             preDays = this.getDaysOfMonth(year, preMonth),
-            nextMonth = currentMonth + 1,
-            nextDays = this.getDaysOfMonth(year, nextMonth);
+            nextMonth = currentMonth + 1;
 
         var firstDay = this.getPositionOfBeginRender(year, month);
         // var rows = Math.ceil((firstDay + currentDays) / 7);
@@ -214,24 +211,45 @@ Calendar.prototype = {
         this.doms.tbody.innerHTML = tmpHtml;
     },
 
-    //将输入框中的字符串变为Date对象
+    /**
+     * @description 将输入框中的字符串变为Date对象
+     * @param {String} dateStr  用户输入框中的格式化的日期字符串
+     * @return {Date} 根据字符串生成的日期对象
+     */
     dateParse: function (dateStr) {
         dateStr = dateStr.replace(/-/g, '/');
         return new Date(Date.parse(dateStr));
     },
 
+    /**
+     * @description 判断是否为闰年
+     * @param {Number} year  传入需要判断的年份
+     * @return {Number} 返回1或0
+     * @example isLeapYear(2016) ==> 1
+     */
     isLeapYear: function (year) {
         return ((year % 100 !== 0 && year % 4 === 0) || year % 400 === 0) ? 1 : 0;
     },
 
+    /**
+     * @description 根据年份和月份得到该月的天数
+     * @param {Number} year  年份
+     * @param {Number} month  月份
+     * @return {Number} 天数
+     * @example getDaysOfMonth(2016， 8) ==> 31
+     */
     getDaysOfMonth: function (year, month) {
         var d = new Date(year, month, 0);
         return d.getDate();
     },
 
-    /*得到这个月第一天是周几，再根据用户设置的以周几开始渲染，得到开始渲染的位置
-    * 如8月第一天是周一，用户设置firDayOfWeek为1，表示从周一开始，结果返回为0，表示从0位置开始渲染
-    * */
+    /**
+     * @description 开始table渲染的位置，得到这个月第一天是周几，再根据用户设置的以周几开始渲染
+     * @param {Number} year  年份
+     * @param {Number} month  月份
+     * @return {Number} 位置 0-6
+     * @example getPositionOfBeginRender(2016， 8) ==> 0 <用户设置为1，8月第一天是周一，所以从0处开始渲染>
+     */
     getPositionOfBeginRender: function (year, month) {
         var tmpDate = new Date(year, month, 1);
         var firstDay = tmpDate.getDay();
@@ -248,12 +266,15 @@ Calendar.prototype = {
         return month === 2 ? (this.isLeapYear(year) + days[month]) : days[month];
     },
 
-    //绑定各种事件
+    /**
+     * @description 绑定各种事件
+     */
     bindEvent: function () {
         var options = this.options,
             doms = this.doms,
             self = this;
 
+        //阻止整个面板click事件向上冒泡
         doms.calendarPane.onclick = function (e) {
             e.stopPropagation();
         };
@@ -336,6 +357,8 @@ Calendar.prototype = {
             day = day < 10 ? ('0' + day) : ('' + day);
         if(options.type === 'yyyy-mm-dd') {
             return year + '-' + month + '-' + day;
+        }else if(options.type === 'dd-mm-yy') {
+            return day + '-' + month + '-' + year;
         }
 
     },
@@ -352,7 +375,9 @@ Calendar.prototype = {
         return hour + ' : ' + minute + ' : ' + second;
     },
 
-    //整个日期面板的显示，根据输入框input距文档顶部和左部的偏移量，来确定日期面板的显示位置
+    /**
+     * @description 整个日期面板的显示，根据输入框input距文档顶部和左部的偏移量，来确定日期面板的显示位置
+     */
     show: function () {
         var options = this.options,
             doms = this.doms;
@@ -366,10 +391,12 @@ Calendar.prototype = {
         doms.calendarPane.style.display = 'block';
         doms.calendarPane.style.top = panelTop + 'px';
         doms.calendarPane.style.left = panelLeft + 'px';
-        this.renderTime();
+        // this.renderTime();
     },
 
-    //隐藏日期面板
+    /**
+     * @description 隐藏日期面板
+     */
     hide: function () {
         var doms = this.doms;
         doms.calendarPane.style.display = 'none';
@@ -378,7 +405,7 @@ Calendar.prototype = {
     renderSelector: function (month, year) {
         var doms = this.doms;
         doms.pickMonth.options[month - 1].selected = true;
-        doms.pickYear.options[year - 1901].selected = true;
+        doms.pickYear.options[year - this.options.beginYear].selected = true;
     },
 
     renderTime: function () {
@@ -386,5 +413,32 @@ Calendar.prototype = {
         var now = new Date();
         var timeStr = this.dateTime(now);
         doms.timeShow.innerHTML = timeStr;
+    },
+
+    extend: function (target, options) {
+
+        function type(obj) {
+            return Object.prototype.toString.call(obj).toLowerCase().slice(8, -1);
+        }
+
+        for (var item in options) {
+            var src = target[item],
+                copy = options[item];
+            var clone;
+            if(target === copy) {
+                continue;
+            }
+
+            if (type(copy) === 'array') {
+                clone = (type(src) === 'array') ? src : [];
+                target[item] = this.extend(clone, copy);
+            } else if (type(copy) === 'object') {
+                clone = (type(src) === 'object') ? src : {};
+                target[item] = this.extend(clone, copy);
+            } else {
+                target[item] = options[item];
+            }
+        }
+        return target;
     }
 };
