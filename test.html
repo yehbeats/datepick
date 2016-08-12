@@ -6,11 +6,11 @@
     <link rel="stylesheet" href="css/date.css">
 </head>
 <body>
-<input type="text" id="in" class="data-pick-input" readonly style="position: absolute; top: 200px; left: 400px;">
-<script src="js/datapick.js"></script>
+<input type="text" id="dateInput" class="date-pick-input" readonly style="position: absolute; top: 200px; left: 400px;">
+<script src="js/datepick.js"></script>
 <script>
     new Calendar({
-        targetInput: document.getElementById('in'),
+        targetInput: document.getElementById('dateInput')
     });
 </script>
 </body>

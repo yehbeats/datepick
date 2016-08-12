@@ -3,7 +3,7 @@
 body { font: 14px/18px "Microsoft Yahei", Tahoma, Helvetica, Arial, Verdana, "\5b8b\4f53", sans-serif;}
 table {  border: none;  }
 
-.data-pick-input {
+.date-pick-input {
     display: inline-block;
     width: 225px;
     line-height: 30px;

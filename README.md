@@ -10,7 +10,7 @@ JavaScript原生日期选择插件
 引入必须的CSS文件
 
 ```javascript
-<script src="js/datapick.js"></script>
+<script src="js/datepick.js"></script>
 <script>
     new Calendar({
         targetInput: document.getElementById('in'),
