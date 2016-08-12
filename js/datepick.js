@@ -29,7 +29,6 @@ var defaultConf = {
 
 function Calendar(options) {
     this.options = this.extend(defaultConf, options);
-    this.targetInput = this.options.targetInput;
     this.date = new Date();   //this.date存储用户所选的值，若没有，则默认今天
     this.now = new Date();
     this.doms = {};          //存储需要交互的dom节点
@@ -54,8 +53,8 @@ Calendar.prototype = {
         var self = this;
 
         //判断输入框是否有日期，被选中日期用白色背景显示
-        if(this.targetInput.value.length > 0) {
-            this.date = this.dateParse(this.targetInput.value);
+        if(options.targetInput.value.length > 0) {
+            this.date = this.dateParse(options.targetInput.value);
         }
 
         var YEAR = this.date.getFullYear(),
