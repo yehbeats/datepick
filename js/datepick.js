@@ -296,7 +296,7 @@ Calendar.prototype = {
                 day = Number(node.text);
                 self.updateDate(self.YEAR, self.MONTH, day);
                 dateStr = self.parseDate(day);
-                self.targetInput.value = dateStr;
+                options.targetInput.value = dateStr;
                 self.renderTable(self.MONTH, self.YEAR);
                 self.hide();
             }
@@ -339,7 +339,7 @@ Calendar.prototype = {
                 self.MONTH = self.date.getMonth() + 1;
                 self.renderTable(self.MONTH, self.YEAR);
             }else if(node.className.indexOf('clear') !== -1) {
-                self.targetInput.value = '';
+                options.targetInput.value = '';
             }
         }
     },
