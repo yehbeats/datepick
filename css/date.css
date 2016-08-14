@@ -3,6 +3,64 @@
 body { font: 14px/18px "Microsoft Yahei", Tahoma, Helvetica, Arial, Verdana, "\5b8b\4f53", sans-serif;}
 table {  border: none;  }
 
+.animated {
+    -webkit-animation-duration: .5s;
+    animation-duration: .5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+
 .date-pick-input {
     display: inline-block;
     width: 225px;
@@ -30,15 +88,14 @@ table {  border: none;  }
     background-color: #FBF6F3;
 }
 
-.header {
+.calendar .header {
     border-radius: 3px;
-    /*width: 100%;*/
     padding: 7px;
     background-color: #CA842E;
     text-align: center;
 }
 
-.header .circle {
+.calendar .header .circle {
     display: inline-block;
     height: 15px;
     width: 15px;
@@ -48,7 +105,7 @@ table {  border: none;  }
     position: relative;
 }
 
-.header .circle .triangle-left {
+.calendar .header .circle .triangle-left {
     display: inline-block;
     width: 0;
     height: 0;
@@ -56,7 +113,7 @@ table {  border: none;  }
     border-right-color: #FFF;
 }
 
-.header .circle .triangle-right {
+.calendar .header .circle .triangle-right {
     display: inline-block;
     width: 0;
     height: 0;
@@ -64,76 +121,76 @@ table {  border: none;  }
     border-left-color: #FFF;
 }
 
-.header .circle .triangle-left.center {
+.calendar .header .circle .triangle-left.center {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-90%, -50%);
 }
 
-.header .circle .triangle-right.center {
+.calendar .header .circle .triangle-right.center {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-20%, -50%);
 }
 
-.header .date-pick {
+.calendar .header .date-pick {
     display: inline-block;
 }
 
-.header .date-pick .year-pick {
+.calendar .header .date-pick .year-pick {
     margin-left: 20px;
 }
 
-table td {
+.calendar table td {
     border: 1px solid #D3D3D3;
     border-radius: 1px;
     transition: all .2s linear;
 }
 
-table td.now-month {
+.calendar table td.now-month {
     cursor: pointer;
 }
 
-table td.pre-month, table td.next-month {
+.calendar table td.pre-month, .calendar table td.next-month {
     cursor: default;
 }
 
-table a {
+.calendar table a {
     display: block;
     padding: .1em .4em;
     text-align: right;
     text-decoration: none;
 }
 
-.week {
+.calendar .week {
     color: #CC6666 !important;
 }
 
-.now-month .state-default {
+.calendar .now-month .state-default {
     color: #555555;
     background-color: #F0E8DB;
 }
 
-.now-month .state-active {
+.calendar .now-month .state-active {
     background-color: #FFFFC0;
 }
 
-.now-month .state-choose {
+.calendar .now-month .state-choose {
     background-color: #FFF;
 }
 
-.pre-month .state-default, .next-month .state-default {
+.calendar .pre-month .state-default, .calendar .next-month .state-default {
     color: #999;
     background-color: #F7F5F3;
 }
 
-table td.now-month:hover {
+.calendar table td.now-month:hover {
     border-color: #555;
 }
 
-table td.now-month:hover .state-default {
+.calendar table td.now-month:hover .state-default {
     color: #222;
     background-color: #FFCC99;
 }

@@ -42,7 +42,6 @@ Calendar.prototype = {
      */
     init: function () {
         this.renderPanel();
-        this.hide();
     },
 
     /**
@@ -68,6 +67,7 @@ Calendar.prototype = {
         var calendarPane = document.createElement('div');
         calendarPane.id = 'calendar';
         calendarPane.className = 'calendar';
+        calendarPane.style.display = 'none';
 
         //创建header
         var header = document.createElement('div');
@@ -390,7 +390,10 @@ Calendar.prototype = {
         doms.calendarPane.style.display = 'block';
         doms.calendarPane.style.top = panelTop + 'px';
         doms.calendarPane.style.left = panelLeft + 'px';
-        // this.renderTime();
+        doms.calendarPane.className += ' fadeIn animated';
+        setTimeout(function () {
+            doms.calendarPane.className = 'calendar';
+        }, 500);
     },
 
     /**
@@ -398,7 +401,11 @@ Calendar.prototype = {
      */
     hide: function () {
         var doms = this.doms;
-        doms.calendarPane.style.display = 'none';
+        doms.calendarPane.className += ' fadeOut animated';
+        setTimeout(function () {
+            doms.calendarPane.style.display = 'none';
+            doms.calendarPane.className = 'calendar';
+        }, 500);
     },
 
     renderSelector: function (month, year) {
