@@ -11,7 +11,7 @@
 * firDayOfWeek：一周以周几开始显示 {1:'周一', 2:'周二', 3:'周三', 4:'周四', 5:'周五', 6:'周六', 0:'周日'}
 * */
 var defaultConf = {
-    targetInput : '',
+    targetInput : document.getElementById('dateInput'),
     beginYear: 1901,
     endYear: 2099,
     type: 'yyyy-mm-dd',

@@ -9,12 +9,17 @@ JavaScript原生日期选择插件
 
 引入必须的CSS文件
 
+在需要选择日期的地方，插入如下`html`代码：
+
+```html
+<input type="text" id="dateInput" class="date-pick-input" readonly>
+```
+
+
 ```javascript
 <script src="js/datepick.js"></script>
 <script>
-    new Calendar({
-        targetInput: document.getElementById('in'),
-    });
+    new Calendar();
 </script>
 ```
 
