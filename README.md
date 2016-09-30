@@ -1,5 +1,7 @@
 # datepick
-JavaScript原生日期选择插件
+原生日期选择插件
+
+使用JavaScript原生编写，无需引入其他JS文件
 
 ##Example
 
